@@ -1,7 +1,9 @@
-package com.example.Practice.Springboot.APIs8;
+package com.example.Practice.Springboot.APIs8.controllers;
 
 
 
+import com.example.Practice.Springboot.APIs8.entities.Employee;
+import com.example.Practice.Springboot.APIs8.services.EmployeeManager;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 

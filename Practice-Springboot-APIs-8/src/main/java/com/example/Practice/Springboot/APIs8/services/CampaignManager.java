@@ -1,5 +1,6 @@
-package com.example.Practice.Springboot.APIs8;
+package com.example.Practice.Springboot.APIs8.services;
 
+import com.example.Practice.Springboot.APIs8.entities.Campaign;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;

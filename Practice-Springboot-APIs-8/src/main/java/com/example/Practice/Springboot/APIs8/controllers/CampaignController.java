@@ -1,5 +1,7 @@
-package com.example.Practice.Springboot.APIs8;
+package com.example.Practice.Springboot.APIs8.controllers;
 
+import com.example.Practice.Springboot.APIs8.entities.Campaign;
+import com.example.Practice.Springboot.APIs8.services.CampaignManager;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController

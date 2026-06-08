@@ -1,4 +1,4 @@
-package com.example.Practice.Springboot.APIs8;
+package com.example.Practice.Springboot.APIs8.entities;
 
 public class Campaign {
     private String campaignId;
