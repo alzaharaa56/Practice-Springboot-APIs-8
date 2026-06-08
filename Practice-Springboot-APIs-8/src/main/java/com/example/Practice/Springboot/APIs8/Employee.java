@@ -13,7 +13,7 @@ public class Employee {
         this.department = department;
     }
 
-    // Getters & Setters
+
     public String getEmployeeId() {
         return employeeId; }
     public void setEmployeeId(String employeeId) {

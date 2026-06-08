@@ -4,7 +4,7 @@ public class Vehicle {
     private String vehicleId;
     private String vehicleModel;
     private double rentalPricePerDay;
-    // Constructor empty for Spring Boot JSON Parsing
+
     public Vehicle() {
     }
 

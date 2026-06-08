@@ -6,7 +6,7 @@ import java.util.List;
 @RequestMapping("/vehicles")
 public class VehicleController {
     private final VehicleManager vehicleManager;
-    // Dependency Injection
+
     public VehicleController(VehicleManager vehicleManager) {
         this.vehicleManager = vehicleManager;
     }
