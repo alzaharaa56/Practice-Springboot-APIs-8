@@ -1,35 +1,25 @@
 package com.example.Practice.Springboot.APIs8.entities;
-
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+@Entity
+@Table(name = "vehicles")
 public class Vehicle {
-    private String vehicleId;
-    private String vehicleModel;
-    private double rentalPricePerDay;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+@NotBlank(message = "Vehicle model is required")
+    @Column(name = "model", nullable = false)
+    private String model;
+    @Column(name = "plate_number")
+    private String plateNumber;
 
     public Vehicle() {
     }
 
-    public Vehicle(String vehicleId, String vehicleModel, double rentalPricePerDay) {
-        this.vehicleId = vehicleId;
-        this.vehicleModel = vehicleModel;
-        this.rentalPricePerDay = rentalPricePerDay;
-    }
-
-    public String getVehicleId() {
-        return vehicleId;
-    }
-    public void setVehicleId(String vehicleId) {
-        this.vehicleId = vehicleId;
-    }
-    public String getVehicleModel() {
-        return vehicleModel;
-    }
-    public void setVehicleModel(String vehicleModel) {
-        this.vehicleModel = vehicleModel;
-    }
-    public double getRentalPricePerDay() {
-        return rentalPricePerDay;
-    }
-    public void setRentalPricePerDay(double rentalPricePerDay) {
-        this.rentalPricePerDay = rentalPricePerDay;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getModel() { return model; }
+    public void setModel(String model) { this.model = model; }
+    public String getPlateNumber() { return plateNumber; }
+    public void setPlateNumber(String plateNumber) { this.plateNumber = plateNumber; }
 }

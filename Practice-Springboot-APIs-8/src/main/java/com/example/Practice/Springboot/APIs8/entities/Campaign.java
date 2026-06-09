@@ -1,32 +1,39 @@
 package com.example.Practice.Springboot.APIs8.entities;
-
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+@Entity
+@Table(name = "campaigns")
 public class Campaign {
-    private String campaignId;
-    private String campaignName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotBlank(message = "Campaign title is required")
+    @Column(name = "title", nullable = false)
+    private String title;
+    @Column(name = "platform")
     private String platform;
-    private double budget;
+    @Column(name = "budget")
+    private Double budget;
 
-    public Campaign() {
-    }
+    public Campaign() {}
 
-    public Campaign(String campaignId, String campaignName, String platform, double budget) {
-        this.campaignId = campaignId;
-        this.campaignName = campaignName;
+    public Campaign(String title, String platform, Double budget) {
+        this.title = title;
         this.platform = platform;
         this.budget = budget;
     }
-
-    public String getCampaignId() {
-        return campaignId;
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
-    public void setCampaignId(String campaignId) {
-        this.campaignId = campaignId;
+    public void setId(Long id) {
+        this.id = id;
     }
-    public String getCampaignName() {
-        return campaignName;
+    public String getTitle() {
+        return title;
     }
-    public void setCampaignName(String campaignName) {
-        this.campaignName = campaignName;
+    public void setTitle(String title) {
+        this.title = title;
     }
     public String getPlatform() {
         return platform;
@@ -34,11 +41,10 @@ public class Campaign {
     public void setPlatform(String platform) {
         this.platform = platform;
     }
-    public double getBudget() {
+    public Double getBudget() {
         return budget;
     }
-    public void setBudget(double budget) {
+    public void setBudget(Double budget) {
         this.budget = budget;
     }
 }
-

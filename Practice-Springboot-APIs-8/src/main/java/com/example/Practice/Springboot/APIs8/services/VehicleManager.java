@@ -1,38 +1,28 @@
 package com.example.Practice.Springboot.APIs8.services;
 import com.example.Practice.Springboot.APIs8.entities.Vehicle;
+import com.example.Practice.Springboot.APIs8.Repositories.VehicleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 @Service
 public class VehicleManager {
+    @Autowired
+    private VehicleRepository vehicleRepository;
 
-    private final List<Vehicle> vehicles = new ArrayList<>();
-
-    public VehicleManager() {
-        vehicles.add(new Vehicle("V101", "Toyota Corolla", 20.0));
-        vehicles.add(new Vehicle("V102", "Nissan Sunny", 18.0));
-        vehicles.add(new Vehicle("V103", "Hyundai Elantra", 22.0));
+    public List<Vehicle> getAllVehicles() {
+        return vehicleRepository.findAll();
     }
 
-    public String addVehicle(Vehicle vehicle) {
-
-        for (Vehicle v : vehicles) {
-            if (v.getVehicleId().equalsIgnoreCase(vehicle.getVehicleId())) {
-                return "Vehicle ID already exists\nNo vehicle was added";
-            }
-        }
-
-        vehicles.add(vehicle);
-
-        return "Vehicle Added Successfully\n" +
-                "Vehicle ID: " + vehicle.getVehicleId() + "\n" +
-                "Vehicle Model: " + vehicle.getVehicleModel() + "\n" +
-                "Rental Price Per Day: " + vehicle.getRentalPricePerDay() + " OMR\n" +
-                "Status: Created";
+    public Optional<Vehicle> getVehicleById(Long id) {
+        return vehicleRepository.findById(id);
     }
 
-    public List<Vehicle> getVehicles() {
-        return vehicles;
+    public Vehicle addVehicle(Vehicle vehicle) {
+        return vehicleRepository.save(vehicle);
+    }
+
+    public void deleteVehicle(Long id) {
+        vehicleRepository.deleteById(id);
     }
 }
-

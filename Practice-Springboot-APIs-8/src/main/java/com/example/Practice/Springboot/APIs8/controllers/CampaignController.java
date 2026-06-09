@@ -1,25 +1,35 @@
 package com.example.Practice.Springboot.APIs8.controllers;
-
 import com.example.Practice.Springboot.APIs8.entities.Campaign;
 import com.example.Practice.Springboot.APIs8.services.CampaignManager;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
-@RequestMapping("/campaigns")
+@RequestMapping("/api/campaigns")
 public class CampaignController {
-    private final CampaignManager campaignManager;
-
-    public CampaignController(CampaignManager campaignManager) {
-        this.campaignManager = campaignManager;
+    @Autowired
+    private CampaignManager campaignManager;
+    @GetMapping
+    public List<Campaign> getAllCampaigns() {
+        return campaignManager.getAllCampaigns();
     }
-
-    @PostMapping("/add")
-    public String createCampaign(@RequestBody Campaign campaign) {
-        return campaignManager.addCampaign(campaign);
+    @GetMapping("/{id}")
+    public ResponseEntity<Campaign> getCampaignById(@PathVariable Long id) {
+        return campaignManager.getCampaignById(id)
+                .map(campaign -> ResponseEntity.ok().body(campaign))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-    @GetMapping("/list")
-    public List<Campaign> listCampaigns() {
-        return campaignManager.getCampaigns();
+    @PostMapping
+    public ResponseEntity<Campaign> createCampaign(@Valid @RequestBody Campaign campaign) {
+        Campaign savedCampaign = campaignManager.addCampaign(campaign);
+        return new ResponseEntity<>(savedCampaign, HttpStatus.CREATED);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCampaign(@PathVariable Long id) {
+        campaignManager.deleteCampaign(id);
+        return ResponseEntity.noContent().build();
     }
 }
