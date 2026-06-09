@@ -15,6 +15,11 @@ public class Campaign {
     @Column(name = "budget")
     private Double budget;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "employee_id" , nullable= false)
+    private Employee employee;
+
+
     public Campaign() {}
 
     public Campaign(String title, String platform, Double budget) {

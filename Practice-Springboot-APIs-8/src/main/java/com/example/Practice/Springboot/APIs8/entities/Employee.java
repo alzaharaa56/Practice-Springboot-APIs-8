@@ -1,6 +1,9 @@
 package com.example.Practice.Springboot.APIs8.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+
+import java.util.List;
+
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -12,6 +15,10 @@ public class Employee {
     private String name;
     @Column(name = "role")
     private String role;
+
+    @OneToMany(mappedBy = "employee", cascade= CascadeType.ALL, orphanRemoval = true)
+
+    private List<Campaign> campaigns;
 
     public Employee() {
     }

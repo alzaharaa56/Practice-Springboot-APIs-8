@@ -13,6 +13,10 @@ public class Vehicle {
     @Column(name = "plate_number")
     private String plateNumber;
 
+@OneToOne
+@JoinColumn(name = "employee_id" , unique = true)
+private Employee employee;
+
     public Vehicle() {
     }
 
@@ -22,4 +26,12 @@ public class Vehicle {
     public void setModel(String model) { this.model = model; }
     public String getPlateNumber() { return plateNumber; }
     public void setPlateNumber(String plateNumber) { this.plateNumber = plateNumber; }
+
+    public Employee getEmployee(){
+        return employee;
+    }
+
+    public void setEmployee(Employee employee){
+        this.employee = employee;
+    }
 }
