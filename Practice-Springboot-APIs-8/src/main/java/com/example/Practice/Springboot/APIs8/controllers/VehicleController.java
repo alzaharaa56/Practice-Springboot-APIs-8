@@ -16,9 +16,28 @@ public class VehicleController {
     public List<Vehicle> getAllVehicles() {
         return vehicleManager.getAllVehicles();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Long id) {
+        return vehicleManager.getVehicleById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
     @PostMapping
     public ResponseEntity<Vehicle> createVehicle(@Valid @RequestBody Vehicle vehicle) {
         Vehicle savedVehicle = vehicleManager.addVehicle(vehicle);
         return new ResponseEntity<>(savedVehicle, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> updateVehicle(@PathVariable Long id, @Valid @RequestBody Vehicle vehicle) {
+        Vehicle updatedVehicle = vehicleManager.updateVehicle(id, vehicle);
+        return ResponseEntity.ok(updatedVehicle);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id) {
+        vehicleManager.deleteVehicle(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.Practice.Springboot.APIs8.Repositories;
+package com.example.Practice.Springboot.APIs8.repositories;
 import com.example.Practice.Springboot.APIs8.entities.Campaign;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
